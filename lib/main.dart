@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApps());
 
@@ -23,15 +24,11 @@ class _MyAppsState extends State<MyApps> {
   @override
   Widget build(BuildContext context) {
     var pertanyaanKita = [
-      'pertanyaan 1',
-      'pertanyaan 2',
+      {"pertanyaan":'pertanyaan 1', 'answer':['A','B','C']},
+      {"pertanyaan":'pertanyaan 2', 'answer': ['A'] },
+      {"pertanyaan":'pertanyaan 3', 'answer': ['C'] },
     ];
-    List<String> listjawaban = [
-      'A',
-      'B',
-      'C',
-      'D',
-    ];
+    List<String> listjawaban = ['A','B','C','D',];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -40,19 +37,11 @@ class _MyAppsState extends State<MyApps> {
         ),
         body: Column(
           children: [
-            Question(pertanyaanKita[this._questionIndex]),
-            RaisedButton(
-              child: Text(listjawaban[0]),
-              onPressed: this._answerQuestion,
-            ),
-            RaisedButton(
-              child: Text(listjawaban[1]),
-              onPressed: this._answerQuestion,
-            ),
-            RaisedButton(
-              child: Text(listjawaban[2]),
-              onPressed: this._answerQuestion,
-            ),
+            Question(pertanyaanKita[this._questionIndex]['pertanyaan']),
+            Answer(listjawaban[0],_answerQuestion),
+            Answer(listjawaban[1],_answerQuestion),
+            Answer(listjawaban[2],_answerQuestion),
+            Answer(listjawaban[2],_answerQuestion),
           ],
         ),
       ),
