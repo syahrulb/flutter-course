@@ -37,6 +37,10 @@ class _MyAppsState extends State<MyApps> {
         'answers': ['C']
       },
     ];
+    // pertanyaanKita =[]; ini tidak bisa dilakukan ketika sebuah variable dijadikan const 
+    var dummy = ["hollo"];
+    dummy.add('max');
+    print(dummy);
     List<String> listjawaban = [
       'A',
       'B',
