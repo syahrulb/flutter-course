@@ -24,9 +24,9 @@ class _MyAppsState extends State<MyApps> {
   @override
   Widget build(BuildContext context) {
     var pertanyaanKita = [
-      {"pertanyaan":'pertanyaan 1', 'answer':['A','B','C']},
-      {"pertanyaan":'pertanyaan 2', 'answer': ['A'] },
-      {"pertanyaan":'pertanyaan 3', 'answer': ['C'] },
+      {"pertanyaan":'pertanyaan 1', 'answers':['A','B','C']},
+      {"pertanyaan":'pertanyaan 2', 'answers': ['A'] },
+      {"pertanyaan":'pertanyaan 3', 'answers': ['C'] },
     ];
     List<String> listjawaban = ['A','B','C','D',];
     return MaterialApp(
@@ -38,10 +38,7 @@ class _MyAppsState extends State<MyApps> {
         body: Column(
           children: [
             Question(pertanyaanKita[this._questionIndex]['pertanyaan']),
-            Answer(listjawaban[0],_answerQuestion),
-            Answer(listjawaban[1],_answerQuestion),
-            Answer(listjawaban[2],_answerQuestion),
-            Answer(listjawaban[2],_answerQuestion),
+            ...listjawaban.map((title) => Answer(title,_answerQuestion)).toList(),
           ],
         ),
       ),
