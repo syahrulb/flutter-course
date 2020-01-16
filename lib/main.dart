@@ -24,11 +24,25 @@ class _MyAppsState extends State<MyApps> {
   @override
   Widget build(BuildContext context) {
     var pertanyaanKita = [
-      {"pertanyaan":'pertanyaan 1', 'answers':['A','B','C']},
-      {"pertanyaan":'pertanyaan 2', 'answers': ['A'] },
-      {"pertanyaan":'pertanyaan 3', 'answers': ['C'] },
+      {
+        "pertanyaan": 'pertanyaan 1',
+        'answers': ['A', 'B', 'C']
+      },
+      {
+        "pertanyaan": 'pertanyaan 2',
+        'answers': ['A']
+      },
+      {
+        "pertanyaan": 'pertanyaan 3',
+        'answers': ['C']
+      },
     ];
-    List<String> listjawaban = ['A','B','C','D',];
+    List<String> listjawaban = [
+      'A',
+      'B',
+      'C',
+      'D',
+    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -38,7 +52,9 @@ class _MyAppsState extends State<MyApps> {
         body: Column(
           children: [
             Question(pertanyaanKita[this._questionIndex]['pertanyaan']),
-            ...listjawaban.map((title) => Answer(title,_answerQuestion)).toList(),
+            ...(pertanyaanKita[this._questionIndex]['answers'] as List <String>).map((jawaban){
+               return Answer(jawaban, _answerQuestion);
+            }).toList(),
           ],
         ),
       ),
