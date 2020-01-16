@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './question.dart';
 import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApps());
 
@@ -13,7 +15,7 @@ class MyApps extends StatefulWidget {
 }
 
 class _MyAppsState extends State<MyApps> {
-  final pertanyaanKita = const [
+  final _pertanyaanKita = const [
     {
       "pertanyaan": 'pertanyaan 1',
       'answers': ['A', 'B', 'C']
@@ -33,7 +35,7 @@ class _MyAppsState extends State<MyApps> {
       _questionIndex = this._questionIndex + 1;
     });
     print(this._questionIndex);
-    if (_questionIndex < pertanyaanKita.length) {
+    if (_questionIndex < _pertanyaanKita.length) {
       print('we have more question');
     }
   }
@@ -56,20 +58,13 @@ class _MyAppsState extends State<MyApps> {
           title: Text('my first apps'),
           backgroundColor: Colors.redAccent,
         ),
-        body: _questionIndex < pertanyaanKita.length
-            ? Column(
-                children: [
-                  Question(pertanyaanKita[this._questionIndex]['pertanyaan']),
-                  ...(pertanyaanKita[this._questionIndex]['answers']
-                          as List<String>)
-                      .map((jawaban) {
-                    return Answer(jawaban, _answerQuestion);
-                  }).toList(),
-                ],
+        body: _questionIndex < _pertanyaanKita.length
+            ? Quiz(
+                asnwerQuestion: _answerQuestion,
+                question: _pertanyaanKita,
+                questionIndex: _questionIndex,
               )
-            : Center(
-                child: Text('berhasil!!'),
-              ),
+            : Result(),
       ),
     );
   }
