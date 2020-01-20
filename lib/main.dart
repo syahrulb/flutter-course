@@ -18,19 +18,36 @@ class _MyAppsState extends State<MyApps> {
   final _pertanyaanKita = const [
     {
       "pertanyaan": 'pertanyaan 1',
-      'answers': ['A', 'B', 'C']
+      'answers': [
+        {'text': 'A', 'score': 10},
+        {'text': 'B', 'score': 20},
+        {'text': 'C', 'score': 10},
+        {'text': 'D', 'score': 40},
+      ]
     },
     {
       "pertanyaan": 'pertanyaan 2',
-      'answers': ['A']
+      'answers': [
+        {'text': 'A', 'score': 30},
+        {'text': 'B', 'score': 20},
+        {'text': 'C', 'score': 50},
+        {'text': 'D', 'score': 40},
+      ]
     },
     {
       "pertanyaan": 'pertanyaan 3',
-      'answers': ['C']
+      'answers': [
+        {'text': 'A', 'score': 20},
+        {'text': 'B', 'score': 10},
+        {'text': 'C', 'score': 80},
+        {'text': 'D', 'score': 90},
+      ]
     },
   ];
   var _questionIndex = 0;
-  void _answerQuestion() {
+  var _totalScore =0;
+  void _answerQuestion(int score) {
+    this._totalScore += score;
     setState(() {
       _questionIndex = this._questionIndex + 1;
     });
@@ -64,7 +81,7 @@ class _MyAppsState extends State<MyApps> {
                 question: _pertanyaanKita,
                 questionIndex: _questionIndex,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
