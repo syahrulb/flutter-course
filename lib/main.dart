@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import './widgets/list_transaksi.dart';
-import './widgets/tambah_transaksi.dart';
+import './widgets/user_transaksi.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,6 +40,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
+          UserTransaksi()
         ],
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TambahTransaksi extends StatelessWidget {
+  final Function tambah;
   final judulController = TextEditingController();
   final jumlahController = TextEditingController();
+  TambahTransaksi(this.tambah);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,8 +30,10 @@ class TambahTransaksi extends StatelessWidget {
               child: Text('tambah data'),
               textColor: Colors.purple,
               onPressed: () {
-                print(judulController.text);
-                print(jumlahController.text);
+                tambah(
+                  judulController.text,
+                  double.parse(jumlahController.text),
+                );
               },
             ),
           ],
