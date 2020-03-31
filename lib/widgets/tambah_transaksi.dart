@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TambahTransaksi extends StatelessWidget {
+  //untuk mengubah / menambahkan list transaksi.
   final Function tambah;
+  // digunakan sebagai menyimpan data secara langsung ketika keystroke di tekan.
   final judulController = TextEditingController();
   final jumlahController = TextEditingController();
   TambahTransaksi(this.tambah);

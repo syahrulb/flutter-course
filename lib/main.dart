@@ -17,31 +17,31 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   // String judulInput;
   // String jumlahInput;
 
-  // digunakan sebagai menyimpan data secara langsung ketika keystroke di tekan.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Aplikasi Simpan pinjam'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text('Grafik'),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('Grafik'),
+                elevation: 5,
+              ),
             ),
-          ),
-          UserTransaksi()
-        ],
+            UserTransaksi()
+          ],
+        ),
       ),
     );
   }
