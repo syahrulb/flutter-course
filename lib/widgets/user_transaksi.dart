@@ -11,7 +11,11 @@ class UserTransaksi extends StatefulWidget {
 class _UserTransaksiState extends State<UserTransaksi> {
   final List<Transaksi> _userTransaksi = [
     Transaksi(
-        id: '1', judul: 'bayar kost', jumlah: 865000, tanggal: DateTime.now(),),
+      id: '1',
+      judul: 'bayar kost',
+      jumlah: 865000,
+      tanggal: DateTime.now(),
+    ),
     Transaksi(
       id: '2',
       judul: 'beli beli mouse',
@@ -29,7 +33,7 @@ class _UserTransaksiState extends State<UserTransaksi> {
       _userTransaksi.add(newTx);
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
