@@ -41,10 +41,7 @@ class ListTransaksi extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       transaksis[index].judul,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.title,
                     ),
                     Text(
                       DateFormat.yMMMd().format(transaksis[index].tanggal),
