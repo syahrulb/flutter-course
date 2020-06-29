@@ -14,6 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aplikasi pencatatan pengeluaran.',
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        accentColor: Colors.lightBlue,
+      ),
     );
   }
 }
@@ -67,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pencatatan pengeluaran'),
-        backgroundColor: Colors.red[600],
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -98,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.green[700],
         onPressed: () => _modalTambahTransaksi(context),
       ),
     );
