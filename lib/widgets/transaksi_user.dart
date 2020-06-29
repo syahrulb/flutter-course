@@ -24,7 +24,7 @@ class _TransaksiUserState extends State<TransaksiUser> {
       tanggal: DateTime.now(),
     ),
   ];
-  void tambahTransaksiBaru(String txJudul, double txJumlah) {
+  void _tambahTransaksiBaru(String txJudul, double txJumlah) {
     final dump = Transaksi(
       id: DateTime.now().toString(),
       judul: txJudul,
@@ -40,7 +40,7 @@ class _TransaksiUserState extends State<TransaksiUser> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        TambahTransaksi(),
+        TambahTransaksi(_tambahTransaksiBaru),
         ListTransaksi(_transaksiUsers),
       ],
     );

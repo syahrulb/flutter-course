@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TambahTransaksi extends StatelessWidget {
+  final Function tambahTransaksi;
   final judulController = TextEditingController();
   final jumlahController = TextEditingController();
+  TambahTransaksi(this.tambahTransaksi);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,8 +23,10 @@ class TambahTransaksi extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                print(judulController.text);
-                print(jumlahController.text);
+                tambahTransaksi(
+                  judulController.text,
+                  double.parse(jumlahController.text),
+                );
               },
               child: Text('Tambah Transaksi'),
               textColor: Colors.purple,
