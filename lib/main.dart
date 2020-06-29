@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 //bagian import wiget
-import 'widgets/transaksi_user.dart';
+import 'widgets/list_transaksi.dart';
+import 'widgets/tambah_transaksi.dart';
+// bagian models
+import 'models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,15 +18,65 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  // String inputJudul;
-  // String inputJumlah;
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaksi> _transaksiUsers = [
+    Transaksi(
+      id: '1',
+      judul: 'Sepatu baru',
+      jumlah: 69.98,
+      tanggal: DateTime.now(),
+    ),
+    Transaksi(
+      id: '2',
+      judul: 'Steam Wallet',
+      jumlah: 16.28,
+      tanggal: DateTime.now(),
+    ),
+  ];
+  void _tambahTransaksiBaru(String txJudul, double txJumlah) {
+    final dump = Transaksi(
+      id: DateTime.now().toString(),
+      judul: txJudul,
+      jumlah: txJumlah,
+      tanggal: DateTime.now(),
+    );
+    setState(() {
+      _transaksiUsers.add(dump);
+    });
+  }
+
+  void _modalTambahTransaksi(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return GestureDetector(
+            onTap: () {},
+            child: TambahTransaksi(_tambahTransaksiBaru),
+            behavior: HitTestBehavior.opaque,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pengcatatan pengeluaran'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.red[600],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () => _modalTambahTransaksi(context),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -38,9 +91,15 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            TransaksiUser(),
+            ListTransaksi(_transaksiUsers),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green[700],
+        onPressed: () => _modalTambahTransaksi(context),
       ),
     );
   }

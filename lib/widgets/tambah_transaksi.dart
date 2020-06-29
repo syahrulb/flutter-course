@@ -26,19 +26,19 @@ class TambahTransaksi extends StatelessWidget {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: 'Judul'),
+              decoration: InputDecoration(labelText: 'Judul Pengeluaran'),
               controller: judulController,
               onSubmitted: (_) => kirimData(),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Jumlah'),
+              decoration: InputDecoration(labelText: 'Jumlah pengeluaran'),
               controller: jumlahController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => kirimData(),
             ),
             FlatButton(
               onPressed: kirimData,
-              child: Text('Tambah Pembelian'),
+              child: Text('Tambah Pengeluaran'),
               textColor: Colors.purple,
             )
           ],
