@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-//bagian import wiget
+//bagian import widgets
 import 'widgets/list_transaksi.dart';
 import 'widgets/tambah_transaksi.dart';
+import 'widgets/chart.dart';
 // bagian models
 import 'models/transaction.dart';
 
@@ -59,6 +60,16 @@ class _MyHomePageState extends State<MyHomePage> {
       tanggal: DateTime.now(),
     ),
   ];
+  List<Transaksi> get _transaksiSaatIni {
+    return _transaksiUsers.where((transaksi) {
+      return transaksi.tanggal.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void _tambahTransaksiBaru(String txJudul, double txJumlah) {
     final dump = Transaksi(
       id: DateTime.now().toString(),
@@ -103,14 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Chart'),
-                elevation: 5,
-              ),
-            ),
+            Chart(_transaksiSaatIni),
             ListTransaksi(_transaksiUsers),
           ],
         ),
