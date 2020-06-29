@@ -25,20 +25,22 @@ class MyHomePage extends StatelessWidget {
         title: Text('Pengcatatan pengeluaran'),
         backgroundColor: Colors.amber,
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text('Chart'),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('Chart'),
+                elevation: 5,
+              ),
             ),
-          ),
-          TransaksiUser(),
-        ],
+            TransaksiUser(),
+          ],
+        ),
       ),
     );
   }
