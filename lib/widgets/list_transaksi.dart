@@ -28,7 +28,7 @@ class ListTransaksi extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    'Rp. ${transaksis[index].jumlah.toString()}',
+                    'Rp. ${transaksis[index].jumlah.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
