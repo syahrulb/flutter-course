@@ -24,7 +24,7 @@ class Chart extends StatelessWidget {
         'hari': DateFormat.E().format(weekDay).substring(0, 1),
         'jumlah': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalPengeluaran {
@@ -39,22 +39,26 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(2),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: grouptransaksis.map(
-            (data) {
-              return Flexible(
-                fit: FlexFit.loose,
-                child: ChartBar(
-                  data['hari'],
-                  data['jumlah'],
-                  totalPengeluaran == 0.0
-                      ? 0.0
-                      : (data['jumlah'] as double) / totalPengeluaran,
-                ),
-              );
-            },
-          ).toList()),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: grouptransaksis.map(
+              (data) {
+                return Flexible(
+                  // flex: 2,
+                  fit: FlexFit.tight,
+                  child: ChartBar(
+                    data['hari'],
+                    data['jumlah'],
+                    totalPengeluaran == 0.0
+                        ? 0.0
+                        : (data['jumlah'] as double) / totalPengeluaran,
+                  ),
+                );
+              },
+            ).toList()),
+      ),
     );
   }
 }
