@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TambahTransaksi extends StatefulWidget {
   final Function tambahTransaksi;
@@ -10,13 +11,13 @@ class TambahTransaksi extends StatefulWidget {
 }
 
 class _TambahTransaksiState extends State<TambahTransaksi> {
-  final judulController = TextEditingController();
+  final _judulController = TextEditingController();
+  final _jumlahController = TextEditingController();
+  DateTime _tanggal;
 
-  final jumlahController = TextEditingController();
-
-  void kirimData() {
-    final enteredJudul = judulController.text;
-    final enteredjumlah = double.parse(jumlahController.text);
+  void _kirimData() {
+    final enteredJudul = _judulController.text;
+    final enteredjumlah = double.parse(_jumlahController.text);
     if (enteredJudul.isEmpty || enteredjumlah <= 0) {
       return;
     }
@@ -28,28 +29,71 @@ class _TambahTransaksiState extends State<TambahTransaksi> {
     Navigator.of(context).pop();
   }
 
+  void _prensentDateTimePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    ).then((value) {
+      if (value == null) {
+        return;
+      }
+      setState(() {
+        _tanggal = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       child: Container(
         padding: EdgeInsets.all(10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(labelText: 'Judul Pengeluaran'),
-              controller: judulController,
-              onSubmitted: (_) => kirimData(),
+              controller: _judulController,
+              onSubmitted: (_) => _kirimData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Jumlah pengeluaran'),
-              controller: jumlahController,
+              controller: _jumlahController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => kirimData(),
+              onSubmitted: (_) => _kirimData(),
             ),
-            FlatButton(
-              onPressed: kirimData,
+            Container(
+              height: 50,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      _tanggal == null
+                          ? 'Tidak tanggal yang dipilih'
+                          : DateFormat.yMd().format(_tanggal),
+                    ),
+                  ),
+                  FlatButton(
+                    textColor: Theme.of(context).primaryColor,
+                    onPressed: _prensentDateTimePicker,
+                    child: Text(
+                      'Pilih tanggal',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            RaisedButton(
+              onPressed: _kirimData,
               child: Text('Tambah Pengeluaran'),
-              textColor: Colors.purple,
+              color: Theme.of(context).primaryColor,
+              textColor: Theme.of(context).textTheme.button.color,
             )
           ],
         ),
