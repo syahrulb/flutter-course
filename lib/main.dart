@@ -71,12 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _tambahTransaksiBaru(String txJudul, double txJumlah) {
+  void _tambahTransaksiBaru(String txJudul, double txJumlah, DateTime tanggal) {
     final dump = Transaksi(
       id: DateTime.now().toString(),
       judul: txJudul,
       jumlah: txJumlah,
-      tanggal: DateTime.now(),
+      tanggal: tanggal,
     );
     setState(() {
       _transaksiUsers.add(dump);

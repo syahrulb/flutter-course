@@ -16,14 +16,18 @@ class _TambahTransaksiState extends State<TambahTransaksi> {
   DateTime _tanggal;
 
   void _kirimData() {
+    if (_jumlahController.text.isEmpty) {
+      return;
+    }
     final enteredJudul = _judulController.text;
     final enteredjumlah = double.parse(_jumlahController.text);
-    if (enteredJudul.isEmpty || enteredjumlah <= 0) {
+    if (enteredJudul.isEmpty || enteredjumlah <= 0 || _tanggal == null) {
       return;
     }
     widget.tambahTransaksi(
       enteredJudul,
       enteredjumlah,
+      _tanggal,
     );
     //untuk menutup modal yang telah di tampilkan.
     Navigator.of(context).pop();
