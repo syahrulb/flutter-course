@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
+import './chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaksi> transaksiSaatIni;
@@ -19,7 +20,16 @@ class Chart extends StatelessWidget {
           totalSum += transaksiSaatIni[i].jumlah;
         }
       }
-      return {'Hari': DateFormat.E().format(weekDay), 'jumlah': totalSum};
+      return {
+        'hari': DateFormat.E().format(weekDay).substring(0, 1),
+        'jumlah': totalSum,
+      };
+    });
+  }
+
+  double get totalPengeluaran {
+    return grouptransaksis.fold(0.0, (sum, item) {
+      return sum + item['jumlah'];
     });
   }
 
@@ -30,8 +40,21 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(2),
       child: Row(
-        children: <Widget>[],
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: grouptransaksis.map(
+            (data) {
+              return Flexible(
+                fit: FlexFit.loose,
+                child: ChartBar(
+                  data['hari'],
+                  data['jumlah'],
+                  totalPengeluaran == 0.0
+                      ? 0.0
+                      : (data['jumlah'] as double) / totalPengeluaran,
+                ),
+              );
+            },
+          ).toList()),
     );
   }
 }
